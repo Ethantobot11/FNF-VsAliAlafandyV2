@@ -1,4 +1,4 @@
-package mobile.backend.android;
+package mobile.android;
 
 #if android
 import lime.system.JNI;
