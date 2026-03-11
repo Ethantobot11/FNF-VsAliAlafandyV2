@@ -697,7 +697,15 @@ class PlayState extends MusicBeatState
 		cachePopUpScore();
 
 		#if mobile
+		#if android
+		if (ClientPrefs.data.pauseButton == true) {
+			addTouchPad("NONE", "P");
+		} else {
+			addTouchPad("NONE", "NONE");
+		}
+		#else
 		addTouchPad("NONE", "P");
+		#end
  		addTouchPadCamera();
 		#end
 
@@ -1755,8 +1763,8 @@ class PlayState extends MusicBeatState
 			 || touchPad.buttonP.justPressed
 			 #else
 			 || touchPad.buttonP.justPressed
-			 #end)
-			 && (startedCountdown && canPause))
+			 #end
+		   	 ) && (startedCountdown && canPause))
 		{
 			var ret:Dynamic = callOnScripts('onPause', null, true);
 			if(ret != LuaUtils.Function_Stop) {
