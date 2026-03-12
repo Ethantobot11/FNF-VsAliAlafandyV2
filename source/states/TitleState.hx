@@ -146,7 +146,13 @@ class TitleState extends MusicBeatState
 
 	var logoBl:FlxSprite;
 	var danceLeft:Bool = false;
+
+	#if mobile
+	var titleTextMobile:FlxSprite;
+	#else
 	var titleText:FlxSprite;
+	#end
+	
 	var swagShader:ColorSwap = null;
 
 	function startIntro()
