@@ -13,7 +13,7 @@ import openfl.events.Event;
 import openfl.display.StageScaleMode;
 import lime.system.System as LimeSystem;
 import lime.app.Application;
-import SplashIntroVideo; // states.TitleState
+import debug.SplashIntroVideo; // states.TitleState
 import mobile.backend.MobileScaleMode;
 import openfl.events.KeyboardEvent;
 #if COPYSTATE_ALLOWED
