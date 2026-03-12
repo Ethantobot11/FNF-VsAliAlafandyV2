@@ -166,7 +166,7 @@ class TitleState extends MusicBeatState
 		}
 		#end
 
-		// MusicBeatState.switchState(new FlxSplashIntro());
+		MusicBeatState.switchState(new SplashIntroVideo());
 	}
 
 	var logoBl:FlxSprite;
