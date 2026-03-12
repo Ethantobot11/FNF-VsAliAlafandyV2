@@ -558,7 +558,7 @@ class TitleState extends MusicBeatState
             #if (hxCodec >= "3.0.0")
             // Recent versions
             video.play(filepath);
-            video.on End Reached.add(function() // REMOVE THE SPACE BETWEEN on, Reached AND End!!!!!!
+            video.add(function() // REMOVE THE SPACE BETWEEN on, Reached AND End!!!!!!
             {
                 video.dispose();
                 startIntro();
