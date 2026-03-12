@@ -36,7 +36,7 @@ class FlxSplashIntro extends MusicBeatState
 		{
 			videoInstance.onEndReached.add(exitState, true);
 
-			new FlxTimer.wait(0.001, function(tmr:FlxTimer)
+			new FlxTimer.start(0.001, function(tmr:FlxTimer)
 			{
 				videoInstance.play();
 			});
