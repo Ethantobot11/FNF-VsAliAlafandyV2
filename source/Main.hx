@@ -13,7 +13,7 @@ import openfl.events.Event;
 import openfl.display.StageScaleMode;
 import lime.system.System as LimeSystem;
 import lime.app.Application;
-import states.TitleState;
+import SplashIntroVideo; // states.TitleState
 import mobile.backend.MobileScaleMode;
 import openfl.events.KeyboardEvent;
 #if COPYSTATE_ALLOWED
@@ -34,10 +34,10 @@ class Main extends Sprite
 	var game = {
 		width: 1280, // WINDOW width
 		height: 720, // WINDOW height
-		initialState: TitleState, // initial game state
+		initialState: SplashIntroVideo, // initial game state // TitleState
 		zoom: -1.0, // game state bounds
 		framerate: 60, // default framerate
-		skipSplash: false, // if the default flixel splash screen should be skipped
+		skipSplash: true, // if the default flixel splash screen should be skipped // false
 		startFullscreen: false // if the game should start at fullscreen mode
 	};
 
