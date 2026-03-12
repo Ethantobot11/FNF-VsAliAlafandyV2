@@ -138,7 +138,7 @@ class TitleState extends MusicBeatState
 		#elseif CHARTING
 		MusicBeatState.switchState(new ChartingState());
 		#else
-		if(FlxG.save.data.flashing == null && !WarningState.leftState) {
+		/*if(FlxG.save.data.flashing == null && !WarningState.leftState) {
 			controls.isInSubstate = false; //idfk what's wrong
 			FlxTransitionableState.skipNextTransIn = true;
 			FlxTransitionableState.skipNextTransOut = true;
@@ -153,6 +153,16 @@ class TitleState extends MusicBeatState
 					startIntro();
 				});
 			}
+		}*/
+
+		if (initialized)
+			startIntro();
+		else
+		{
+			new FlxTimer().start(1, function(tmr:FlxTimer)
+			{
+				startIntro();
+			});
 		}
 		#end
 
