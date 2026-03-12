@@ -197,7 +197,7 @@ class TitleState extends MusicBeatState
 		}
 
 		#if mobile
-		titleTextMobile = new FlxSprite(titleJSON.startx - 5, titleJSON.starty);
+		titleTextMobile = new FlxSprite(titleJSON.startx - 80, titleJSON.starty);
 		titleTextMobile.frames = Paths.getSparrowAtlas('titleEnter_mobile');
 		var animFrames:Array<FlxFrame> = [];
 		@:privateAccess {
