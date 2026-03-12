@@ -35,8 +35,9 @@ class FlxSplashIntro extends MusicBeatState
 		if (videoInstance.load(Paths.video('alafandy_intro')))
 		{
 			videoInstance.onEndReached.add(exitState, true);
-			
-			FlxTimer.wait(0.001, () -> {
+
+			new FlxTimer.wait(0.001, function(tmr:FlxTimer)
+			{
 				videoInstance.play();
 			});
 		}
