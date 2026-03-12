@@ -20,6 +20,8 @@ import shaders.ColorSwap;
 import states.StoryMenuState;
 import states.MainMenuState;
 
+import debug.SplashIntroVideo;
+
 /*#if VIDEOS_ALLOWED
 #if (hxCodec >= "3.0.0")
 import hxcodec.flixel.FlxVideo as VideoHandler;
