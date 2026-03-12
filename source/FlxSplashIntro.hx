@@ -15,7 +15,7 @@ import vlc.MP4Handler as VideoHandler;
 import backend.MusicBeatState;
 
 import flixel.FlxG;
-import flixel.util.FlxTimer;
+// import flixel.util.FlxTimer;
 
 class FlxSplashIntro extends MusicBeatState
 {
@@ -36,7 +36,7 @@ class FlxSplashIntro extends MusicBeatState
 		{
 			videoInstance.onEndReached.add(exitState, true);
 
-			new FlxTimer.start(0.001, function(tmr:FlxTimer)
+			new FlxTimer.wait(0.001, function(tmr:FlxTimer)
 			{
 				videoInstance.play();
 			});
