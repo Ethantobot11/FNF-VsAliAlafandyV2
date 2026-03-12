@@ -20,6 +20,18 @@ import shaders.ColorSwap;
 import states.StoryMenuState;
 import states.MainMenuState;
 
+#if VIDEOS_ALLOWED
+#if (hxCodec >= "3.0.0")
+import hxcodec.flixel.FlxVideo as VideoHandler;
+#elseif (hxCodec >= "2.6.1")
+import hxcodec.VideoHandler as VideoHandler;
+#elseif (hxCodec == "2.6.0")
+import VideoHandler;
+#else
+import vlc.MP4Handler as VideoHandler;
+#end
+#end
+
 typedef TitleData =
 {
 	titlex:Float,
@@ -157,11 +169,22 @@ class TitleState extends MusicBeatState
 
 	function startIntro()
 	{
-		if (!initialized)
+		/*if (!initialized)
 		{
 			if(FlxG.sound.music == null) {
 				FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
 			}
+		}*/
+
+		if (initialized)
+             startIntro();
+        else
+        {
+            new FlxTimer().start(1, function(tmr:FlxTimer)
+            {
+                startVideo('alafandy_intro');
+                trace('starting video...');
+            });
 		}
 
 		Conductor.bpm = titleJSON.bpm;
@@ -502,6 +525,7 @@ class TitleState extends MusicBeatState
 
 	var skippedIntro:Bool = false;
 	var increaseVolume:Bool = false;
+	
 	function skipIntro():Void
 	{
 		if (!skippedIntro)
@@ -513,5 +537,47 @@ class TitleState extends MusicBeatState
 			}
 			skippedIntro = true;
 		}
+	}
+
+	public function startVideo(name:String)
+    {
+        #if VIDEOS_ALLOWED
+        var filepath:String = Paths.video(name);
+        #if sys
+        if(!FileSystem.exists(filepath))
+        #else
+        if(!OpenFlAssets.exists(filepath))
+        #end
+        {
+            FlxG.log.warn('Couldnt find video file: ' + name);
+            startIntro();
+            initialized = true;
+            return;
+        }
+        var video:VideoHandler = new VideoHandler();
+            #if (hxCodec >= "3.0.0")
+            // Recent versions
+            video.play(filepath);
+            video.on End Reached.add(function() // REMOVE THE SPACE BETWEEN on, Reached AND End!!!!!!
+            {
+                video.dispose();
+                startIntro();
+                initialized = true;
+                return;
+            }, true);
+            #else
+            // Older versions
+            video.playVideo(filepath);
+            video.finishCallback = function()
+            {
+                startIntro();
+                initialized = true;
+                return;
+            }
+            #end
+        #else
+        FlxG.log.warn('Platform not supported!');
+        return;
+        #end
 	}
 }
