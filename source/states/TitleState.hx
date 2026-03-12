@@ -472,8 +472,6 @@ class TitleState extends MusicBeatState
 					createCoolText([''], 40);
 					addMoreText('', 40);
 					addMoreText('', 40);
-					addMoreText('', 40);
-					addMoreText('', 40);
 				case 8:
 					addMoreText('present', 40);
 				case 9:
