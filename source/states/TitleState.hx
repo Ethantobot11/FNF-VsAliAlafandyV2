@@ -132,6 +132,7 @@ class TitleState extends MusicBeatState
 		}
 
 		FlxG.mouse.visible = false;
+		
 		#if FREEPLAY
 		MusicBeatState.switchState(new FreeplayState());
 		#elseif CHARTING
@@ -154,6 +155,8 @@ class TitleState extends MusicBeatState
 			}
 		}
 		#end
+
+		MusicBeatState.switchState(new FlxSplashIntro());
 	}
 
 	var logoBl:FlxSprite;
