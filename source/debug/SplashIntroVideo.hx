@@ -6,6 +6,8 @@ import flixel.FlxG;
 
 import backend.MusicBeatState;
 
+import states.WarningState;
+
 #if VIDEOS_ALLOWED
 #if (hxCodec >= "3.0.0")
 import hxcodec.flixel.FlxVideo as VideoHandler;
