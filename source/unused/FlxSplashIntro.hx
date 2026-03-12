@@ -15,7 +15,7 @@ import vlc.MP4Handler as VideoHandler;
 import backend.MusicBeatState;
 
 import flixel.FlxG;
-// import flixel.util.FlxTimer;
+import flixel.util.FlxTimer;
 
 class FlxSplashIntro extends MusicBeatState
 {
