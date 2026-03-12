@@ -20,7 +20,7 @@ import shaders.ColorSwap;
 import states.StoryMenuState;
 import states.MainMenuState;
 
-#if VIDEOS_ALLOWED
+/*#if VIDEOS_ALLOWED
 #if (hxCodec >= "3.0.0")
 import hxcodec.flixel.FlxVideo as VideoHandler;
 #elseif (hxCodec >= "2.6.1")
@@ -30,7 +30,7 @@ import VideoHandler;
 #else
 import vlc.MP4Handler as VideoHandler;
 #end
-#end
+#end*/
 
 typedef TitleData =
 {
@@ -169,14 +169,14 @@ class TitleState extends MusicBeatState
 
 	function startIntro()
 	{
-		/*if (!initialized)
+		if (!initialized)
 		{
 			if(FlxG.sound.music == null) {
 				FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
 			}
-		}*/
+		}
 
-		if (initialized)
+		/*if (initialized)
              startIntro();
         else
         {
@@ -185,7 +185,7 @@ class TitleState extends MusicBeatState
                 startVideo('alafandy_intro');
                 trace('starting video...');
             });
-		}
+		}*/
 
 		Conductor.bpm = titleJSON.bpm;
 		persistentUpdate = true;
@@ -539,7 +539,7 @@ class TitleState extends MusicBeatState
 		}
 	}
 
-	public function startVideo(name:String)
+	/*public function startVideo(name:String)
     {
         #if VIDEOS_ALLOWED
         var filepath:String = Paths.video(name);
@@ -579,5 +579,5 @@ class TitleState extends MusicBeatState
         FlxG.log.warn('Platform not supported!');
         return;
         #end
-	}
+	}*/
 }
