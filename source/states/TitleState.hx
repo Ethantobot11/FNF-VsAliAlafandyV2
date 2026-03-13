@@ -146,7 +146,7 @@ class TitleState extends MusicBeatState
 			FlxTransitionableState.skipNextTransOut = true;
 			MusicBeatState.switchState(new WarningState());
 		} else {
-			if (initialized)
+			/*if (initialized)
 				startIntro();
 			else
 			{
@@ -154,6 +154,17 @@ class TitleState extends MusicBeatState
 				{
 					startIntro();
 				});
+			}*/
+
+			if (initialized)
+             	startIntro();
+        	else
+        	{
+            	new FlxTimer().start(1, function(tmr:FlxTimer)
+            	{
+                	startVideo('alafandy_intro');
+                	trace('starting video...');
+            	});
 			}
 		}
 		#end
@@ -301,17 +312,6 @@ class TitleState extends MusicBeatState
 			skipIntro();
 		else
 			initialized = true;
-
-		if (initialized)
-             startIntro();
-        else
-        {
-            new FlxTimer().start(1, function(tmr:FlxTimer)
-            {
-                startVideo('alafandy_intro');
-                trace('starting video...');
-            });
-		}
 
 		Paths.clearUnusedMemory();
 		// credGroup.add(credTextShit);
