@@ -156,6 +156,9 @@ class TitleState extends MusicBeatState
 				});
 			}
 		}
+		#end
+
+		// MusicBeatState.switchState(new SplashIntroVideo());
 	}
 
 	var logoBl:FlxSprite;
