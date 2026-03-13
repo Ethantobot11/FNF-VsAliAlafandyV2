@@ -20,7 +20,7 @@ import shaders.ColorSwap;
 import states.StoryMenuState;
 import states.MainMenuState;
 
-import debug.SplashIntroVideo;
+// import debug.SplashIntroVideo;
 
 #if VIDEOS_ALLOWED
 #if (hxCodec >= "3.0.0")
