@@ -20,8 +20,6 @@ import shaders.ColorSwap;
 import states.StoryMenuState;
 import states.MainMenuState;
 
-// import debug.SplashIntroVideo;
-
 #if VIDEOS_ALLOWED
 #if (hxCodec >= "3.0.0")
 import hxcodec.flixel.FlxVideo as VideoHandler;
@@ -168,8 +166,6 @@ class TitleState extends MusicBeatState
 			}
 		}
 		#end
-
-		// MusicBeatState.switchState(new SplashIntroVideo());
 	}
 
 	var logoBl:FlxSprite;
@@ -300,7 +296,7 @@ class TitleState extends MusicBeatState
 
 		credTextShit.visible = false;
 
-		alafandyLogo = new FlxSprite(0, -10).loadGraphic(Paths.image('alafandy_logo'));
+		alafandyLogo = new FlxSprite(0, -20).loadGraphic(Paths.image('alafandy_logo'));
 		add(alafandyLogo);
 		alafandyLogo.visible = false;
 		alafandyLogo.setGraphicSize(Std.int(alafandyLogo.width * 0.8));
@@ -563,7 +559,7 @@ class TitleState extends MusicBeatState
             #if (hxCodec >= "3.0.0")
             // Recent versions
             video.play(filepath);
-            video.onEndReached.add(function() // REMOVE THE SPACE BETWEEN on, Reached AND End!!!!!!
+            video.onEndReached.add(function()
             {
                 video.dispose();
                 startIntro();
