@@ -22,7 +22,7 @@ import states.MainMenuState;
 
 import debug.SplashIntroVideo;
 
-/*#if VIDEOS_ALLOWED
+#if VIDEOS_ALLOWED
 #if (hxCodec >= "3.0.0")
 import hxcodec.flixel.FlxVideo as VideoHandler;
 #elseif (hxCodec >= "2.6.1")
@@ -32,7 +32,7 @@ import VideoHandler;
 #else
 import vlc.MP4Handler as VideoHandler;
 #end
-#end*/
+#end
 
 typedef TitleData =
 {
@@ -140,7 +140,7 @@ class TitleState extends MusicBeatState
 		#elseif CHARTING
 		MusicBeatState.switchState(new ChartingState());
 		#else
-		/*if(FlxG.save.data.flashing == null && !WarningState.leftState) {
+		if(FlxG.save.data.flashing == null && !WarningState.leftState) {
 			controls.isInSubstate = false; //idfk what's wrong
 			FlxTransitionableState.skipNextTransIn = true;
 			FlxTransitionableState.skipNextTransOut = true;
@@ -155,20 +155,7 @@ class TitleState extends MusicBeatState
 					startIntro();
 				});
 			}
-		}*/
-
-		if (initialized)
-			startIntro();
-		else
-		{
-			new FlxTimer().start(1, function(tmr:FlxTimer)
-			{
-				startIntro();
-			});
 		}
-		#end
-
-		MusicBeatState.switchState(new SplashIntroVideo());
 	}
 
 	var logoBl:FlxSprite;
@@ -190,17 +177,6 @@ class TitleState extends MusicBeatState
 				FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
 			}
 		}
-
-		/*if (initialized)
-             startIntro();
-        else
-        {
-            new FlxTimer().start(1, function(tmr:FlxTimer)
-            {
-                startVideo('alafandy_intro');
-                trace('starting video...');
-            });
-		}*/
 
 		Conductor.bpm = titleJSON.bpm;
 		persistentUpdate = true;
@@ -322,6 +298,17 @@ class TitleState extends MusicBeatState
 			skipIntro();
 		else
 			initialized = true;
+
+		if (initialized)
+             startIntro();
+        else
+        {
+            new FlxTimer().start(1, function(tmr:FlxTimer)
+            {
+                startVideo('alafandy_intro');
+                trace('starting video...');
+            });
+		}
 
 		Paths.clearUnusedMemory();
 		// credGroup.add(credTextShit);
@@ -554,7 +541,7 @@ class TitleState extends MusicBeatState
 		}
 	}
 
-	/*public function startVideo(name:String)
+	public function startVideo(name:String)
     {
         #if VIDEOS_ALLOWED
         var filepath:String = Paths.video(name);
@@ -594,5 +581,5 @@ class TitleState extends MusicBeatState
         FlxG.log.warn('Platform not supported!');
         return;
         #end
-	}*/
+	}
 }
