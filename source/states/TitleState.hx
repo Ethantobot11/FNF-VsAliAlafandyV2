@@ -221,7 +221,7 @@ class TitleState extends MusicBeatState
 		}
 
 		#if mobile
-		titleTextMobile = new FlxSprite(titleJSON.startx - 50, titleJSON.starty);
+		titleTextMobile = new FlxSprite(titleJSON.startx - 65, titleJSON.starty);
 		titleTextMobile.frames = Paths.getSparrowAtlas('titleEnter_mobile');
 		var animFrames:Array<FlxFrame> = [];
 		@:privateAccess {
@@ -296,12 +296,12 @@ class TitleState extends MusicBeatState
 
 		credTextShit.visible = false;
 
-		alafandyLogo = new FlxSprite(0, -80).loadGraphic(Paths.image('alafandy_logo'));
+		alafandyLogo = new FlxSprite(0, -20).loadGraphic(Paths.image('alafandy_logo'));
 		add(alafandyLogo);
 		alafandyLogo.visible = false;
 		alafandyLogo.setGraphicSize(Std.int(alafandyLogo.width * 0.8));
 		alafandyLogo.updateHitbox();
-		alafandyLogo.screenCenter();
+		alafandyLogo.screenCenter(X);
 		alafandyLogo.antialiasing = ClientPrefs.data.antialiasing;
 
 		if (initialized)
