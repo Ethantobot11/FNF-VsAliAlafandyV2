@@ -584,14 +584,14 @@ class PlayState extends MusicBeatState
 		uiGroup.add(healthBar);
 
 		iconP1 = new HealthIcon(boyfriend.healthIcon, true);
-		iconP1.x = 1040;
+		// iconP1.x = 1040;
 		iconP1.y = healthBar.y - 75;
 		iconP1.visible = !ClientPrefs.data.hideHud;
 		iconP1.alpha = ClientPrefs.data.healthBarAlpha;
 		uiGroup.add(iconP1);
 
 		iconP2 = new HealthIcon(dad.healthIcon, false);
-		iconP2.x = 100;
+		// iconP2.x = 100;
 		iconP2.y = healthBar.y - 75;
 		iconP2.visible = !ClientPrefs.data.hideHud;
 		iconP2.alpha = ClientPrefs.data.healthBarAlpha;
@@ -643,8 +643,9 @@ class PlayState extends MusicBeatState
 		logo.animation.addByPrefix('bump', 'logo bumpin0', 24, false);
 		logo.animation.play('bump');
 		logo.updateHitbox();
-		logo.scale.x = 0.4;
-		logo.scale.y = 0.4;
+		logo.setGraphicSize(Std.int(logo.width * 0.4));
+		// logo.scale.x = 0.4;
+		// logo.scale.y = 0.4;
 		logo.alpha = 0.6;
 		// logo.screenCenter();
 		// logo.color = FlxColor.BLACK;
