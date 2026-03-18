@@ -492,13 +492,19 @@ class PlayState extends MusicBeatState
 		specialGroup = new FlxSpriteGroup();
 		add(specialGroup);
 
+		videoMark = new FlxSprite(0, 0).loadGraphic(Paths.image('waterMark'));
+		videoMark.antialiasing = ClientPrefs.data.antialiasing;
+		// videoMark.visible = true;
+		videoMark.updateHitbox();
+		specialGroup.add(videoMark);
+
 		Conductor.songPosition = -5000 / Conductor.songPosition;
 		var showTime:Bool = (ClientPrefs.data.timeBarType != 'Disabled');
-		timeTxt = new FlxText(STRUM_X + (FlxG.width / 2) - 248, 19, 400, "" + ' / ' + FlxStringUtil.formatTime(FlxG.sound.music.length / 1000, false), 32);
-		timeTxt.setFormat(Paths.font("google.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		timeTxt = new FlxText(STRUM_X + (FlxG.width / 2) - 248 - 15, 19, 400, "" + ' / ' + FlxStringUtil.formatTime(FlxG.sound.music.length / 1000, false), 32);
+		timeTxt.setFormat(Paths.font("google.ttf"), 32, FlxColor.WHITE, CENTER); //, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK
 		timeTxt.scrollFactor.set();
 		timeTxt.alpha = 0;
-		timeTxt.x -= 15;
+		// timeTxt.x -= 15;
 		timeTxt.y = 665;
 		timeTxt.borderSize = 2;
 		timeTxt.visible = updateTime = showTime;
@@ -630,11 +636,11 @@ class PlayState extends MusicBeatState
 			botplayTxt.y = timeBar.y - 78;
 		}
 
-		logo = new FlxSprite(920, 20);
+		logo = new FlxSprite(720, 0); // 920, 20
 		logo.frames = Paths.getSparrowAtlas('logoBumpin');
 		logo.antialiasing = ClientPrefs.data.antialiasing;
 
-		logo.animation.addByPrefix('bump', 'logo bumpin', 24, false);
+		logo.animation.addByPrefix('bump', 'logo bumpin0', 24, false);
 		logo.animation.play('bump');
 		logo.updateHitbox();
 		logo.scale.x = 0.4;
@@ -645,25 +651,17 @@ class PlayState extends MusicBeatState
 
 		specialGroup.add(logo);
 
-		videoMark = new FlxSprite(0, 0).loadGraphic(Paths.image('waterMark'));
-		videoMark.antialiasing = ClientPrefs.data.antialiasing;
-		// videoMark.visible = true;
-		videoMark.updateHitbox();
-		specialGroup.add(videoMark);
-
 		if(ClientPrefs.data.downScroll == false)
 		{
 			scoreTxt.y = 610;
 			iconP1.y = 500;
 			iconP2.y = 500;
 			healthBar.y = 560;
-			// healthBarBG.y = 580;
 		} else {
 			scoreTxt.y = 610 - 450;
 			iconP1.y = 500 - 450;
 			iconP2.y = 500 - 450;
 			healthBar.y = 560 - 450;
-			// healthBarBG.y = 580 - 450;
 		}
 
 		uiGroup.cameras = [camHUD];
@@ -3361,6 +3359,9 @@ class PlayState extends MusicBeatState
 		iconP2.updateHitbox();
 
 		characterBopper(curBeat);
+
+		if(logo != null)
+			logo.animation.play('bump', true);
 
 		super.beatHit();
 		lastBeatHit = curBeat;
