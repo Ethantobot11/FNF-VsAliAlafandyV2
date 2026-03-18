@@ -207,6 +207,9 @@ class PlayState extends MusicBeatState
 	public var botplaySine:Float = 0;
 	public var botplayTxt:FlxText;
 
+	public var logo:FlxSprite;
+	public var videoMark:FlxSprite;
+
 	public var iconP1:HealthIcon;
 	public var iconP2:HealthIcon;
 	public var camHUD:FlxCamera;
@@ -486,17 +489,22 @@ class PlayState extends MusicBeatState
 		add(noteGroup);
 		uiGroup = new FlxSpriteGroup();
 		add(uiGroup);
+		specialGroup = new FlxSpriteGroup();
+		add(specialGroup);
 
 		Conductor.songPosition = -5000 / Conductor.songPosition;
 		var showTime:Bool = (ClientPrefs.data.timeBarType != 'Disabled');
-		timeTxt = new FlxText(STRUM_X + (FlxG.width / 2) - 248, 19, 400, "", 32);
-		timeTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		timeTxt = new FlxText(STRUM_X + (FlxG.width / 2) - 248, 19, 400, "" + ' / ' + FlxStringUtil.formatTime(FlxG.sound.music.length / 1000, false), 32);
+		timeTxt.setFormat(Paths.font("Google.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		timeTxt.scrollFactor.set();
 		timeTxt.alpha = 0;
+		timeTxt.x -= 15;
+		timeTxt.y = 665;
 		timeTxt.borderSize = 2;
 		timeTxt.visible = updateTime = showTime;
 		
-		if(ClientPrefs.data.downScroll) timeTxt.y = FlxG.height - 44;
+		// if(ClientPrefs.data.downScroll) timeTxt.y = FlxG.height - 44;
+		
 		if(ClientPrefs.data.timeBarType == 'Song Name')
 		{
 			switch (ClientPrefs.data.botplayName) {
@@ -509,22 +517,25 @@ class PlayState extends MusicBeatState
 		}
 
 		timeBar = new Bar(0, timeTxt.y + (timeTxt.height / 4), 'timeBar', function() return songPercent, 0, 1);
+		timeBar.createFilledBar(FlxColor.RED, FlxColor.WHITE);
 		timeBar.scrollFactor.set();
 		timeBar.screenCenter(X);
 		timeBar.alpha = 0;
+		timeBar.y = 640;
+		timeBar.scale.x = 3;
 		timeBar.visible = showTime;
 		
-		uiGroup.add(timeBar);
-		uiGroup.add(timeTxt);
+		specialGroup.add(timeBar);
+		specialGroup.add(timeTxt);
 
 		strumLineNotes = new FlxTypedGroup<StrumNote>();
 		noteGroup.add(strumLineNotes);
 
-		if(ClientPrefs.data.timeBarType == 'Song Name')
+		/*if(ClientPrefs.data.timeBarType == 'Song Name')
 		{
 			timeTxt.size = 24;
 			timeTxt.y += 3;
-		}
+		}*/
 
 		var splash:NoteSplash = new NoteSplash(100, 100);
 		splash.setupNoteSplash(100, 100);
@@ -557,21 +568,24 @@ class PlayState extends MusicBeatState
 		moveCameraSection();
 
 		healthBar = new Bar(0, FlxG.height * (!ClientPrefs.data.downScroll ? 0.89 : 0.11), 'healthBar', function() return health, 0, 2);
+		healthBar.createFilledBar('0000FF', '5DED2A');
 		healthBar.screenCenter(X);
 		healthBar.leftToRight = false;
 		healthBar.scrollFactor.set();
 		healthBar.visible = !ClientPrefs.data.hideHud;
 		healthBar.alpha = ClientPrefs.data.healthBarAlpha;
-		reloadHealthBarColors();
+		// reloadHealthBarColors();
 		uiGroup.add(healthBar);
 
 		iconP1 = new HealthIcon(boyfriend.healthIcon, true);
+		iconP1.x = 1040;
 		iconP1.y = healthBar.y - 75;
 		iconP1.visible = !ClientPrefs.data.hideHud;
 		iconP1.alpha = ClientPrefs.data.healthBarAlpha;
 		uiGroup.add(iconP1);
 
 		iconP2 = new HealthIcon(dad.healthIcon, false);
+		iconP2.x = 100;
 		iconP2.y = healthBar.y - 75;
 		iconP2.visible = !ClientPrefs.data.hideHud;
 		iconP2.alpha = ClientPrefs.data.healthBarAlpha;
@@ -616,16 +630,31 @@ class PlayState extends MusicBeatState
 			botplayTxt.y = timeBar.y - 78;
 		}
 
+		if(ClientPrefs.data.downScroll == false)
+		{
+			scoreTxt.y = 610;
+			iconP1.y = 500;
+			iconP2.y = 500;
+			healthBar.y = 560;
+			healthBarBG.y = 580;
+		} else {
+			scoreTxt.y = 610 - 450;
+			iconP1.y = 500 - 450;
+			iconP2.y = 500 - 450;
+			healthBar.y = 560 - 450;
+			healthBarBG.y = 580 - 450;
+		}
+
 		uiGroup.cameras = [camHUD];
 		noteGroup.cameras = [camHUD];
 		comboGroup.cameras = [camHUD];
+		specialGroup.cameras = [camOther];
 
 		startingSong = true;
 
 		switch (ClientPrefs.data.hudColor) {
-			case 'Time Bar Only':
-				reloadTimeBarColor();
-			
+			/*case 'Time Bar Only':
+				reloadTimeBarColor();*/
 			case 'On':
 				reloadHUDColor();
 		}
@@ -794,15 +823,15 @@ class PlayState extends MusicBeatState
 		var dadColor = FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]);
 
     	if (dadColor == FlxColor.BLACK) {
-        	timeTxt.color = 0xFFFFFFFF;
-        	timeBar.setColors(0xFFFFFFFF);
+        	// timeTxt.color = 0xFFFFFFFF;
+        	// timeBar.setColors(0xFFFFFFFF);
         	scoreTxt.color = 0xFFFFFFFF;
         	botplayTxt.color = 0xFFFFFFFF;
     	} else {
         	var hudColor = FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]);
 			
-        	timeTxt.color = hudColor;
-        	timeBar.setColors(hudColor);
+        	// timeTxt.color = hudColor;
+        	// timeBar.setColors(hudColor);
         	scoreTxt.color = hudColor;
         	botplayTxt.color = hudColor;
     	}
