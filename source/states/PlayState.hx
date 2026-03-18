@@ -500,7 +500,7 @@ class PlayState extends MusicBeatState
 
 		Conductor.songPosition = -5000 / Conductor.songPosition;
 		var showTime:Bool = (ClientPrefs.data.timeBarType != 'Disabled');
-		timeTxt = new FlxText(STRUM_X + (FlxG.width / 2) - 248 - 15, 19, 400, "" + ' / ' + FlxStringUtil.formatTime(FlxG.sound.music.length / 1000, false), 32);
+		timeTxt = new FlxText(STRUM_X + (FlxG.width / 2) - 248 - 15, 19, 400, "", 32);
 		timeTxt.setFormat(Paths.font("google.ttf"), 32, FlxColor.WHITE, CENTER); //, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK
 		timeTxt.scrollFactor.set();
 		timeTxt.alpha = 0;
@@ -1869,7 +1869,7 @@ class PlayState extends MusicBeatState
 			if(secondsTotal < 0) secondsTotal = 0;
 
 			if(ClientPrefs.data.timeBarType != 'Song Name')
-				timeTxt.text = FlxStringUtil.formatTime(secondsTotal, false);
+				timeTxt.text = FlxStringUtil.formatTime(secondsTotal, false) + ' / ' + FlxStringUtil.formatTime(FlxG.sound.music.length / 1000, false);
 		}
 
 		if (camZooming)
