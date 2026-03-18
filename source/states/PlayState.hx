@@ -630,6 +630,27 @@ class PlayState extends MusicBeatState
 			botplayTxt.y = timeBar.y - 78;
 		}
 
+		logo = new FlxSprite(920, 20);
+		logo.frames = Paths.getSparrowAtlas('logoBumpin');
+		logo.antialiasing = ClientPrefs.data.antialiasing;
+
+		logo.animation.addByPrefix('bump', 'logo bumpin', 24, false);
+		logo.animation.play('bump');
+		logo.updateHitbox();
+		logo.scale.x = 0.4;
+		logo.scale.y = 0.4;
+		logo.alpha = 0.6;
+		// logo.screenCenter();
+		// logo.color = FlxColor.BLACK;
+
+		specialGroup.add(logo);
+
+		videoMark = new FlxSprite(0, 0).loadGraphic(Paths.image('waterMark'));
+		videoMark.antialiasing = ClientPrefs.data.antialiasing;
+		// videoMark.visible = true;
+		videoMark.updateHitbox();
+		specialGroup.add(videoMark);
+
 		if(ClientPrefs.data.downScroll == false)
 		{
 			scoreTxt.y = 610;
@@ -1091,10 +1112,13 @@ class PlayState extends MusicBeatState
 			for (i in 0...playerStrums.length) {
 				setOnScripts('defaultPlayerStrumX' + i, playerStrums.members[i].x);
 				setOnScripts('defaultPlayerStrumY' + i, playerStrums.members[i].y);
+				if(ClientPrefs.data.downScroll) playerStrums.members[i].y = 520;
 			}
 			for (i in 0...opponentStrums.length) {
 				setOnScripts('defaultOpponentStrumX' + i, opponentStrums.members[i].x);
 				setOnScripts('defaultOpponentStrumY' + i, opponentStrums.members[i].y);
+				
+				if(ClientPrefs.data.downScroll) opponentStrums.members[i].y = 520;
 				//if(ClientPrefs.data.middleScroll) opponentStrums.members[i].visible = false;
 			}
 
