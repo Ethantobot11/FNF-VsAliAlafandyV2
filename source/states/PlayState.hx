@@ -12,6 +12,7 @@ import flixel.FlxObject;
 import flixel.FlxSubState;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.util.FlxSort;
+import flixel.ui.FlxBar;
 import flixel.util.FlxStringUtil;
 import flixel.util.FlxSave;
 import flixel.input.keyboard.FlxKey;
@@ -657,13 +658,13 @@ class PlayState extends MusicBeatState
 			iconP1.y = 500;
 			iconP2.y = 500;
 			healthBar.y = 560;
-			healthBarBG.y = 580;
+			// healthBarBG.y = 580;
 		} else {
 			scoreTxt.y = 610 - 450;
 			iconP1.y = 500 - 450;
 			iconP2.y = 500 - 450;
 			healthBar.y = 560 - 450;
-			healthBarBG.y = 580 - 450;
+			// healthBarBG.y = 580 - 450;
 		}
 
 		uiGroup.cameras = [camHUD];
@@ -2671,6 +2672,8 @@ class PlayState extends MusicBeatState
 	public var uiGroup:FlxSpriteGroup;
 	// Stores Note Objects in a Group
 	public var noteGroup:FlxTypedGroup<FlxBasic>;
+	// Stores Other Objects in a Group
+	public var specialGroup:FlxSpriteGroup;
 
 	private function cachePopUpScore()
 	{
