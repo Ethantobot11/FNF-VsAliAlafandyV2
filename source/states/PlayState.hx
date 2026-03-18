@@ -12,7 +12,6 @@ import flixel.FlxObject;
 import flixel.FlxSubState;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.util.FlxSort;
-import flixel.ui.FlxBar;
 import flixel.util.FlxStringUtil;
 import flixel.util.FlxSave;
 import flixel.input.keyboard.FlxKey;
@@ -518,7 +517,7 @@ class PlayState extends MusicBeatState
 		}
 
 		timeBar = new Bar(0, timeTxt.y + (timeTxt.height / 4), 'timeBar', function() return songPercent, 0, 1);
-		timeBar.createFilledBar(FlxColor.RED, FlxColor.WHITE);
+		timeBar.setColors(FlxColor.RED, FlxColor.WHITE);
 		timeBar.scrollFactor.set();
 		timeBar.screenCenter(X);
 		timeBar.alpha = 0;
@@ -569,7 +568,7 @@ class PlayState extends MusicBeatState
 		moveCameraSection();
 
 		healthBar = new Bar(0, FlxG.height * (!ClientPrefs.data.downScroll ? 0.89 : 0.11), 'healthBar', function() return health, 0, 2);
-		healthBar.createFilledBar('0000FF', '5DED2A');
+		healthBar.setColors('0000FF', '5DED2A');
 		healthBar.screenCenter(X);
 		healthBar.leftToRight = false;
 		healthBar.scrollFactor.set();
