@@ -500,7 +500,7 @@ class PlayState extends MusicBeatState
 
 		Conductor.songPosition = -5000 / Conductor.songPosition;
 		var showTime:Bool = (ClientPrefs.data.timeBarType != 'Disabled');
-		timeTxt = new FlxText(STRUM_X + (FlxG.width / 2) - 248 - 15, 19, 400, "", 32);
+		timeTxt = new FlxText(-15, 19, 400, "", 32); // STRUM_X + (FlxG.width / 2) - 248
 		timeTxt.setFormat(Paths.font("google.ttf"), 32, FlxColor.WHITE, CENTER); //, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK
 		timeTxt.scrollFactor.set();
 		timeTxt.alpha = 0;
@@ -584,14 +584,14 @@ class PlayState extends MusicBeatState
 		uiGroup.add(healthBar);
 
 		iconP1 = new HealthIcon(boyfriend.healthIcon, true);
-		// iconP1.x = 1040;
+		iconP1.x = 1040;
 		iconP1.y = healthBar.y - 75;
 		iconP1.visible = !ClientPrefs.data.hideHud;
 		iconP1.alpha = ClientPrefs.data.healthBarAlpha;
 		uiGroup.add(iconP1);
 
 		iconP2 = new HealthIcon(dad.healthIcon, false);
-		// iconP2.x = 100;
+		iconP2.x = 100;
 		iconP2.y = healthBar.y - 75;
 		iconP2.visible = !ClientPrefs.data.hideHud;
 		iconP2.alpha = ClientPrefs.data.healthBarAlpha;
