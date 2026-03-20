@@ -2006,21 +2006,21 @@ class PlayState extends MusicBeatState
 	var iconsAnimations:Bool = true;
 	function set_health(value:Float):Float
 	{
-		if (!iconsAnimations || healthBar == null || !healthBar.enabled || healthBar.valueFunction == null)
+		if(!iconsAnimations || healthBar == null || !healthBar.enabled || healthBar.valueFunction == null)
 		{
 			health = value;
 			return health;
 		}
 
-		// Update health bar
+		// update health bar
 		health = value;
-		var newPercent:Null<Float> = FlxMath.remapToRange(
-			FlxMath.bound(healthBar.valueFunction(), healthBar.bounds.min, healthBar.bounds.max),
-			healthBar.bounds.min, healthBar.bounds.max, 0, 100
-		);
+		var newPercent:Null<Float> = FlxMath.remapToRange(FlxMath.bound(healthBar.valueFunction(), healthBar.bounds.min, healthBar.bounds.max), healthBar.bounds.min, healthBar.bounds.max, 0, 100);
 		healthBar.percent = (newPercent != null ? newPercent : 0);
 
-		inline function isAnimated(icon:HealthIcon):Bool
+		iconP1.animation.curAnim.curFrame = (healthBar.percent < 20) ? 1 : 0; //If health is under 20%, change player icon to frame 1 (losing icon), otherwise, frame 0 (normal)
+		iconP2.animation.curAnim.curFrame = (healthBar.percent > 80) ? 1 : 0; //If health is over 80%, change opponent icon to frame 1 (losing icon), otherwise, frame 0 (normal)
+
+		/*inline function isAnimated(icon:HealthIcon):Bool
 			return icon != null && icon.animation != null && (icon.animation.exists("idle") || icon.animation.exists("winning") || icon.animation.exists("losing"));
 
 		if (iconP1 != null)
@@ -2085,7 +2085,7 @@ class PlayState extends MusicBeatState
 					iconP2.animation.curAnim.curFrame = (healthBar.percent > 80) ? 0 : 1;
 				}
 			}
-		}
+		}*/
 
 		return health;
 	}
