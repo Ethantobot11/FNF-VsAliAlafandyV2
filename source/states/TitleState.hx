@@ -296,7 +296,7 @@ class TitleState extends MusicBeatState
 
 		credTextShit.visible = false;
 
-		alafandyLogo = new FlxSprite(0, 17).loadGraphic(Paths.image('alafandy_logo'));
+		alafandyLogo = new FlxSprite(0, 200).loadGraphic(Paths.image('alafandy_logo'));
 		add(alafandyLogo);
 		alafandyLogo.visible = false;
 		alafandyLogo.setGraphicSize(Std.int(alafandyLogo.width * 0.8));
