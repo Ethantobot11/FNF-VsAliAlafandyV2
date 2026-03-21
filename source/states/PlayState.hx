@@ -634,7 +634,7 @@ class PlayState extends MusicBeatState
 			botplayTxt.y = timeBar.y - 78;
 		}
 
-		logo = new FlxSprite(640, -200); // 920, 20
+		logo = new FlxSprite(640, -190); // 920, 20
 		logo.frames = Paths.getSparrowAtlas('logoBumpin');
 		logo.antialiasing = ClientPrefs.data.antialiasing;
 
