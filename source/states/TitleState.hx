@@ -296,7 +296,7 @@ class TitleState extends MusicBeatState
 
 		credTextShit.visible = false;
 
-		alafandyLogo = new FlxSprite(0, 280).loadGraphic(Paths.image('alafandy_logo'));
+		alafandyLogo = new FlxSprite(0, 220).loadGraphic(Paths.image('alafandy_logo'));
 		add(alafandyLogo);
 		alafandyLogo.visible = false;
 		alafandyLogo.setGraphicSize(Std.int(alafandyLogo.width * 0.8));
@@ -494,7 +494,6 @@ class TitleState extends MusicBeatState
 				case 6:
 					alafandyLogo.visible = true;
 					createCoolText([''], 40);
-					addMoreText('', 40);
 					addMoreText('', 40);
 				case 8:
 					addMoreText('present', 40);
