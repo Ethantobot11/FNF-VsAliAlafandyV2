@@ -168,11 +168,13 @@ class EditorPlayState extends MusicBeatSubstate
 		#if android
 		if (ClientPrefs.data.pauseButton == true) {
 			addTouchPad("NONE", "P");
+			touchPad.buttonP.color = 0xFF0000AF;
 		} else {
 			addTouchPad("NONE", "NONE");
 		}
 		#else
-			addTouchPad("NONE", "P");
+		addTouchPad("NONE", "P");
+		touchPad.buttonP.color = 0xFF0000AF;
 		#end
 		addTouchPadCamera();
 		#end
