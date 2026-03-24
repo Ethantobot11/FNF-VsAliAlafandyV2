@@ -19,6 +19,7 @@ class GalleryState extends MusicBeatState
 	var galleryStuff:Array<Array<String>>;
 
 	var bg:FlxSprite;
+	var galleryText:FlxText;
 	var descText:FlxText;
 	var bars:FlxSprite;
 
@@ -65,12 +66,6 @@ class GalleryState extends MusicBeatState
 
 		for (i in 0...galleryStuff.length)
 		{
-			var galleryText:FlxText = new FlxText(50, -100, FlxG.width - 100, galleryStuff[i][0]);
-			galleryText.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.BLUE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-			galleryText.y -= 275;
-			galleryText.screenCenter();
-			uiGroup.add(galleryText);
-
 			var imagePath:String = "gallery/";
 
 			for (id => i in galleryStuff[i][1]) {
@@ -83,6 +78,12 @@ class GalleryState extends MusicBeatState
 
 		bars = new FlxSprite().loadGraphic(Paths.image("gallery/ui/bars"));
 		uiGroup.add(bars);
+
+		galleryText = new FlxText(50, -100, FlxG.width - 100, "");
+		galleryText.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.BLUE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		galleryText.screenCenter();
+		galleryText.y -= 275;
+		uiGroup.add(galleryText);
 
 		descText = new FlxText(50, -100, FlxG.width - 100, "");
 		descText.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.BLUE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
