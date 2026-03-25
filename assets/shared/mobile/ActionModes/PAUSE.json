@@ -1,7 +1,7 @@
 {
   "buttons": [
     {
-      "button": "pauseButton",
+      "button": "buttonP",
       "graphic": "pause",
       "x": 1156,
       "y": 2,
