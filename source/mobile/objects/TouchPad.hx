@@ -68,8 +68,6 @@ class TouchPad extends MobileInputManager implements IMobileControls
 	public var buttonExtra:TouchButton = new TouchButton(0, 0);
 	public var buttonExtra2:TouchButton = new TouchButton(0, 0);
 
-	public var pauseButton:TouchButton = new TouchButton(0, 0, [MobileInputID.PAUSE]);
-
 	public var instance:MobileInputManager;
 
 	/**
