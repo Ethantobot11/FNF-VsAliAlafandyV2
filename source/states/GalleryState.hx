@@ -68,12 +68,10 @@ class GalleryState extends MusicBeatState
 		{
 			var imagePath:String = "gallery/";
 
-			for (id => i in galleryStuff[i][1]) {
-				var newItem = new GalleryImage();
-				newItem.loadGraphic(Paths.image(imagePath + i));
-				newItem.ID = id;
-				itemGroup.add(newItem);
-			}
+			var newItem = new GalleryImage();
+			newItem.loadGraphic(Paths.image(imagePath + galleryStuff[i][1]));
+			newItem.ID = i;
+			itemGroup.add(newItem);
 		}
 
 		bars = new FlxSprite().loadGraphic(Paths.image("gallery/ui/bars"));
