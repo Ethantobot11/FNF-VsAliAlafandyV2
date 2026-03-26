@@ -59,10 +59,10 @@ class GalleryState extends MusicBeatState
 			['AliOX', 'aliOX', 'Blue Fox from Smiling Critters.'] // https://www.youtube.com/@alialafandyarabic
 		];
 
-		for (i in defaultList)
+		/*for (i in defaultList)
 		{
 			galleryStuff.push(i);
-		}
+		}*/
 
 		for (i in 0...galleryStuff.length)
 		{
