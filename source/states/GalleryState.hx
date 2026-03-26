@@ -52,6 +52,8 @@ class GalleryState extends MusicBeatState
 		add(uiGroup);
 
 		var defaultList:Array<Array<String>> = [ // Name - Sprite name - Description -- Link
+			['Credits'],
+			[''],
 			['Sprite Sheet', 'spriteSheets', 'Drawn by Ali Alafandy, Learning Animation (Sad Moment).'], // https://www.youtube.com/@alialafandy
 			['M.Shaban', 'mShaban', 'Just a Cool Guy with Green Hair.'], // https://www.youtube.com/@2025_توكلت_علي_لله
 			['Ahmed Zezo', 'ahmedZezo', 'Just a Cool Guy with Mix Hair.'], // https://www.youtube.com/@ahmedzezopro
